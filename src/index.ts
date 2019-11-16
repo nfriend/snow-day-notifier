@@ -2,9 +2,7 @@ import { checkSiteForDelay } from './check-site-for-delay';
 import { createIftttEvent } from './create-ifttt-event';
 
 module.exports.checkForDelays = async () => {
-  console.log('process.env.IFTTT_KEYS:', process.env.IFTTT_KEYS);
   const iftttKeys = JSON.parse(process.env.IFTTT_KEYS);
-  console.log('iftttKeys:', iftttKeys);
 
   const checkSiteResults = await checkSiteForDelay();
 
