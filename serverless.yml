@@ -1,10 +1,12 @@
-service: gitlab-example
+service: snow-day-notifier
 provider:
   name: aws
   runtime: nodejs10.x
 
 functions:
-  hello:
+  checkForDelays:
     handler: build/index.checkForDelays
     events:
       - http: POST checkForDelays
+    environment:
+      IFTTT_KEYS: ${opt:iftttKeysJsonArray}
