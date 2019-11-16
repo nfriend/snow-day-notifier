@@ -1,8 +1,42 @@
-// dummy test
+import { checkSiteForDelay } from './check-site-for-delay';
+
+let mockArticleTitle;
+jest.mock('request-promise', () => {
+  return () =>
+    Promise.resolve(`
+    <html>
+      <head></head>
+      <body>
+        <div id="content">
+          <article id="post-12984" class="post-12984 post type-post status-publish format-standard hentry category-closures">
+            <header class="entry-header">
+              <h1 class="entry-title">
+                <a href="https://edu.princeedwardisland.ca/psb/2019/10/17/all-after-school-student-activities-cancelled/" rel="bookmark">${mockArticleTitle}</a>
+              </h1>
+            </header>
+        </div>
+      </body>
+    </html>
+`);
+});
+
 describe('check-site-for-delay', () => {
-  describe('#indexOf()', () => {
-    it('should return -1 when the value is not present', () => {
-      expect([1, 2, 3].indexOf(4)).toBe(-1);
+  it('identifies a post about a delay', async () => {
+    mockArticleTitle = 'All After-School Student Activities Cancelled';
+    const actual = await checkSiteForDelay();
+
+    expect(actual).toEqual({
+      matchedArticleTitle: mockArticleTitle,
+      newDelayOrCancellationDetected: true,
+    });
+  });
+
+  it('does not identify any posts about delays', async () => {
+    mockArticleTitle = 'Public Schools Branch Career-Job Fairs';
+    const actual = await checkSiteForDelay();
+
+    expect(actual).toEqual({
+      newDelayOrCancellationDetected: false,
     });
   });
 });
