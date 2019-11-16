@@ -10,5 +10,8 @@ module.exports.checkForDelays = async () => {
     await createIftttEvent(checkSiteResults.matchedArticleTitle, iftttKeys);
   }
 
-  return 'checkForDelays executed successfully!';
+  return {
+    statusCode: 200,
+    body: 'checkForDelays executed successfully!',
+  };
 };
