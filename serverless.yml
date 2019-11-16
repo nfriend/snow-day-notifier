@@ -7,7 +7,6 @@ functions:
   checkForDelays:
     handler: build/index.checkForDelays
     events:
-      - http: POST checkForDelays
       - schedule: rate(5 minutes)
     environment:
       IFTTT_KEYS: ${opt:iftttKeysJsonArray}
