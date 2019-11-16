@@ -45,8 +45,9 @@ production:
   before_script:
     - npm config set prefix /usr/local
     - npm install -g serverless
+  cache: {}
   script:
-    - npm run deploy
+    - serverless deploy --stage production --verbose --iftttKeysJsonArray "$IFTTT_KEY_JSON_ARRAY"
   environment: production
   only:
     refs:

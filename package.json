@@ -13,8 +13,7 @@
     "prettier": "prettier --check '**/*.ts'",
     "prettier:fix": "prettier --write '**/*.ts'",
     "lint": "npm run prettier; npm run tslint",
-    "lint:fix": "npm run prettier-fix; npm run tslint-fix",
-    "deploy": "serverless deploy --stage production --verbose --iftttKeysJsonArray \"$IFTTT_KEY_JSON_ARRAY\""
+    "lint:fix": "npm run prettier-fix; npm run tslint-fix"
   },
   "repository": {
     "type": "git",
@@ -44,7 +43,6 @@
     "jest": "^24.9.0",
     "jest-junit-reporter": "^1.1.0",
     "prettier": "^1.19.1",
-    "serverless": "^1.57.0",
     "ts-jest": "^24.1.0",
     "tslint": "^5.20.1",
     "typescript": "^3.7.2"
