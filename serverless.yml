@@ -5,6 +5,6 @@ provider:
 
 functions:
   hello:
-    handler: src/handler.hello
+    handler: build/index.checkForDelays
     events:
-      - http: GET hello
+      - http: POST checkForDelays

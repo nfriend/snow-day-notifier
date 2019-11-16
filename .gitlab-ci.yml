@@ -1,7 +1,45 @@
 image: node:latest
 
 stages:
+  - test
+  - build
   - deploy
+
+before_script:
+  - npm install
+
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - node_modules/
+
+jest:
+  stage: test
+  script:
+    - npm run test
+  artifacts:
+    paths:
+      - test-report.xml
+    reports:
+      junit: test-report.xml
+
+tslint:
+  stage: test
+  script:
+    - npm run tslint
+
+prettier:
+  stage: test
+  script:
+    - npm run prettier
+
+tsc:
+  stage: build
+  script:
+    - npm run build
+  artifacts:
+    paths:
+      - build/
 
 production:
   stage: deploy

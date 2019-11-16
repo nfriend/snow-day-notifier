@@ -1,0 +1,55 @@
+{
+  "name": "@nathanfriend/snow-day-notifier",
+  "version": "1.0.0",
+  "description": "A small utility that sends notifications when school is delayed or cancelled",
+  "main": "build/index.js",
+  "scripts": {
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "tslint": "tslint -c tslint.json -p .",
+    "tslint:fix": "tslint -c tslint.json -p . --fix",
+    "prettier": "prettier --check '**/*.ts'",
+    "prettier:fix": "prettier --write '**/*.ts'",
+    "lint": "npm run prettier; npm run tslint",
+    "lint:fix": "npm run prettier-fix; npm run tslint-fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.com/nfriend/snow-day-notifier.git"
+  },
+  "keywords": [
+    "typescript",
+    "ifttt",
+    "lambda",
+    "aws"
+  ],
+  "author": "Nathan Friend",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://gitlab.com/nfriend/snow-day-notifier/issues"
+  },
+  "homepage": "https://gitlab.com/nfriend/snow-day-notifier#readme",
+  "devDependencies": {
+    "@babel/core": "^7.7.2",
+    "@babel/preset-env": "^7.7.1",
+    "@babel/preset-typescript": "^7.7.2",
+    "@types/cheerio": "^0.22.14",
+    "@types/jest": "^24.0.23",
+    "@types/node": "^12.12.8",
+    "@types/request-promise": "^4.1.44",
+    "babel-jest": "^24.9.0",
+    "jest": "^24.9.0",
+    "jest-junit-reporter": "^1.1.0",
+    "prettier": "^1.19.1",
+    "ts-jest": "^24.1.0",
+    "tslint": "^5.20.1",
+    "typescript": "^3.7.2"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.3",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.5"
+  }
+}
