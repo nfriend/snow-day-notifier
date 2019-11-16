@@ -9,4 +9,6 @@ module.exports.checkForDelays = async () => {
   if (checkSiteResults.newDelayOrCancellationDetected) {
     await createIftttEvent(checkSiteResults.matchedArticleTitle, iftttKeys);
   }
+
+  return 'checkForDelays executed successfully!';
 };
