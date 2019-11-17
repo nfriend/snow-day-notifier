@@ -36,4 +36,10 @@ This project expect a few CI/CD variables to be in place:
 
 When creating the IAM user for this project, grant the user the following permissions:
 
+- `AWSLambdaFullAccess`
+- `IAMFullAccess`
+- `AmazonDynamoDBFullAccess`
+- `AnazonAPIGatewayAdministrator`
+- `AWSCloudFormationFullAccess`
+
 ![A screenshot of IAM's management console showing the necessary permissions](./iam-permissions.png)
