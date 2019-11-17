@@ -1,5 +1,7 @@
 # Snow Day Notifier
 
+<a href="https://gitlab.com/nfriend/snow-day-notifier/pipelines" target="_blank"><img src="https://gitlab.com/nfriend/snow-day-notifier/badges/master/pipeline.svg" alt="GitLab build status"></a>
+
 A small [Lambda](https://aws.amazon.com/lambda/) function that scrapes [PEI's public school board website](https://edu.princeedwardisland.ca/psb/) and sends alerts (through [IFTTT](https://ifttt.com/)) if school is delayed or closed.
 
 <img src="./snow.png" alt="A snowflake logo" width="250"/>
