@@ -58,7 +58,7 @@ const checkSiteForDelay = async (): Promise<SiteCheckResult> => {
 
     return {
       newDelayOrCancellationDetected: foundMatch,
-      matchedArticleTitle: lastMatchedTitle,
+      matchedArticleTitle: matchedArticle,
     };
   } else {
     if (foundMatch) {

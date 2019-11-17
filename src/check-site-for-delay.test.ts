@@ -18,12 +18,22 @@ jest.mock('request-promise', () => {
 `);
 });
 
+let mockLastMatchedTitle: string;
+jest.mock('./title-persistence', () => {
+  return {
+    getLastMatchedTitle: async () => mockLastMatchedTitle,
+    setLastMatchedTitle: async (matchedTitle: string) =>
+      (mockLastMatchedTitle = matchedTitle),
+  };
+});
+
 describe('check-site-for-delay', () => {
   let checkSiteForDelay;
 
   beforeEach(() => {
     jest.resetModules();
     ({ checkSiteForDelay } = require('./check-site-for-delay'));
+    mockLastMatchedTitle = undefined;
   });
 
   it('identifies a post about a delay', async () => {
