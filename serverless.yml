@@ -11,7 +11,7 @@ functions:
       - schedule: rate(5 minutes)
     environment:
       IFTTT_KEYS: ${opt:iftttKeysJsonArray}
-      AWS_REGION: ${opt:awsRegion}
+      AWS_DYNAMO_REGION: ${opt:awsDynamoRegion}
 
 resources:
   Resources:
