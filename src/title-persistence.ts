@@ -1,4 +1,5 @@
 import * as AWS from 'aws-sdk';
+import { Marshaller } from '@aws/dynamodb-auto-marshaller';
 
 AWS.config.update({ region: process.env.AWS_DYNAMO_REGION });
 
@@ -6,6 +7,8 @@ const ddb = new AWS.DynamoDB({ apiVersion: '2012-08-10' });
 
 const TABLE_NAME = 'snowDayNotifierTable';
 const KEY_NAME = 'lastMatchedTitle';
+
+const marshaller = new Marshaller();
 
 export const getLastMatchedTitle = () => {
   return new Promise<string>((resolve, reject) => {
@@ -17,7 +20,7 @@ export const getLastMatchedTitle = () => {
       ProjectionExpression: 'CONFIG_VALUE',
     };
 
-    ddb.getItem(params, (err, lastMatchedTitle) => {
+    ddb.getItem(params, (err, data) => {
       if (err) {
         console.error(
           'An error occurred while getting the last matched title from the database:',
@@ -25,11 +28,13 @@ export const getLastMatchedTitle = () => {
         );
         reject(err);
       } else {
+        const arst = marshaller.unmarshallItem(data.Item);
+
         console.info(
           'Successfully fetched the last matched title from the database:',
-          JSON.stringify(lastMatchedTitle.Item, null, 2),
+          JSON.stringify(arst, null, 2),
         );
-        resolve(JSON.stringify(lastMatchedTitle.Item, null, 2));
+        resolve(JSON.stringify(arst, null, 2));
       }
     });
   });
@@ -39,10 +44,10 @@ export const setLastMatchedTitle = (articleTitle: string) => {
   return new Promise<void>((resolve, reject) => {
     const params = {
       TableName: TABLE_NAME,
-      Item: {
-        CONFIG_KEY: { S: KEY_NAME },
-        CONFIG_VALUE: { S: articleTitle },
-      },
+      Item: marshaller.marshallItem({
+        CONFIG_KEY: KEY_NAME,
+        CONFIG_VALUE: articleTitle,
+      }),
     };
 
     ddb.putItem(params, err => {
