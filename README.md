@@ -31,3 +31,9 @@ This project expect a few CI/CD variables to be in place:
    ```
 
 1. `AWS_DYNAMO_REGION`: The AWS region of your IAM user (i.e. `ca-central-1`) for usage when setting up a DynamoDB connection
+
+### IAM User
+
+When creating the IAM user for this project, grant the user the following permissions:
+
+![A screenshot of IAM's management console showing the necessary permissions](./iam-permissions.png)
