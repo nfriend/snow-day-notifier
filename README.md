@@ -1,3 +1,29 @@
 # Snow Day Notifier
 
 A small [Lambda](https://aws.amazon.com/lambda/) function that scrapes [PEI's public school board website](https://edu.princeedwardisland.ca/psb/) and sends alerts (through [IFTTT](https://ifttt.com/)) if school is delayed or closed.
+
+<img src="./snow.png" alt="A snowflake logo" width="250"/>
+
+Deployment of the Lambda function is managed by [GitLab CI/CD](https://docs.gitlab.com/ee/ci/) and the [Serverless framework](https://serverless.com/). This function is scheduled to run every 5 minutes.
+
+## Developing
+
+1. Clone this repo: `git clone git@gitlab.com:nfriend/snow-day-notifier.git`
+1. Install dependencies: `cd snow-day-notifier && npm install`
+1. Run any of the scripts found in this project's `package.json`, for example: `npm run build:watch`
+
+## Deploying
+
+1. `git push` on `master`
+
+## Project setup
+
+This project expect a few CI/CD variables to be in place:
+
+1. `AWS_ACCESS_KEY_ID`: The access key ID of your AWS IAM user
+1. `AWS_SECRET_ACCESS_KEY`: The secret access key of your AWS IAM user
+1. `IFTTT_KEY_JSON_ARRAY`: A JSON-formatted array of all [IFTTT Webhook keys](https://help.ifttt.com/hc/en-us/articles/115010230347-Webhooks-service-FAQ) that should be notified if a delay is detected. For example:
+
+   ```json
+   ["ifttt-key-1", "ifttt-key-2"]
+   ```
