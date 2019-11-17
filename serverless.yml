@@ -31,10 +31,10 @@ resources:
       Properties:
         TableName: snowDayNotifierTable
         AttributeDefinitions:
-          - AttributeName: key
+          - AttributeName: CONFIG_KEY
             AttributeType: S
         KeySchema:
-          - AttributeName: key
+          - AttributeName: CONFIG_KEY
             KeyType: HASH
         ProvisionedThroughput:
           ReadCapacityUnits: 1

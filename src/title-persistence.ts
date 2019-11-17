@@ -12,9 +12,9 @@ export const getLastMatchedTitle = () => {
     const params = {
       TableName: TABLE_NAME,
       Key: {
-        key: { S: KEY_NAME },
+        CONFIG_KEY: { S: KEY_NAME },
       },
-      ProjectionExpression: 'value',
+      ProjectionExpression: 'CONFIG_VALUE',
     };
 
     ddb.getItem(params, (err, lastMatchedTitle) => {
@@ -40,8 +40,8 @@ export const setLastMatchedTitle = (articleTitle: string) => {
     const params = {
       TableName: TABLE_NAME,
       Item: {
-        key: { S: KEY_NAME },
-        value: { S: articleTitle },
+        CONFIG_KEY: { S: KEY_NAME },
+        CONFIG_VALUE: { S: articleTitle },
       },
     };
 
