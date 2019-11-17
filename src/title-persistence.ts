@@ -14,6 +14,7 @@ export const getLastMatchedTitle = () => {
       Key: {
         key: { S: KEY_NAME },
       },
+      ProjectionExpression: 'value',
     };
 
     ddb.getItem(params, (err, lastMatchedTitle) => {
