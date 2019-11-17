@@ -26,17 +26,23 @@ export const getLastMatchedTitle = () => {
           'An error occurred while getting the last matched title from the database:',
           err,
         );
+
         reject(err);
       } else {
-        const { CONFIG_VALUE: lastMatchedTitle } = marshaller.unmarshallItem(
+        const { CONFIG_VALUE: configValue } = marshaller.unmarshallItem(
           data.Item,
         );
 
+        const lastMatchedTitle = configValue
+          ? configValue.toString()
+          : undefined;
+
         console.info(
           'Successfully fetched the last matched title from the database:',
-          JSON.stringify(lastMatchedTitle, null, 2),
+          lastMatchedTitle,
         );
-        resolve(JSON.stringify(lastMatchedTitle, null, 2));
+
+        resolve(lastMatchedTitle);
       }
     });
   });
