@@ -1,5 +1,5 @@
-import * as AWS from 'aws-sdk';
 import { Marshaller } from '@aws/dynamodb-auto-marshaller';
+import * as AWS from 'aws-sdk';
 
 AWS.config.update({ region: process.env.AWS_DYNAMO_REGION });
 
