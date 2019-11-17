@@ -63,7 +63,7 @@ const checkSiteForDelay = async (): Promise<SiteCheckResult> => {
   } else {
     if (foundMatch) {
       console.info(
-        'Match has was previously found; no IFTTT event will be triggered',
+        'Match was previously found; no IFTTT event will be triggered',
       );
     }
 
