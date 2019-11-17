@@ -46,7 +46,7 @@ production:
     - npm config set prefix /usr/local
     - npm install -g serverless
   script:
-    - serverless deploy --stage production --verbose --iftttKeysJsonArray "$IFTTT_KEY_JSON_ARRAY"
+    - serverless deploy --stage production --verbose --iftttKeysJsonArray "$IFTTT_KEY_JSON_ARRAY" --awsRegion "$AWS_REGION"
   environment: production
   only:
     refs:

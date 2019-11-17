@@ -11,3 +11,20 @@ functions:
       - schedule: rate(5 minutes)
     environment:
       IFTTT_KEYS: ${opt:iftttKeysJsonArray}
+      AWS_REGION: ${opt:awsRegion}
+
+resources:
+  Resources:
+    snowDayNotifierTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: snowDayNotifierTable
+        AttributeDefinitions:
+          - AttributeName: key
+            AttributeType: S
+        KeySchema:
+          - AttributeName: key
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1

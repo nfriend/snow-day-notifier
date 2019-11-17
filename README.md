@@ -29,3 +29,5 @@ This project expect a few CI/CD variables to be in place:
    ```json
    ["ifttt-key-1", "ifttt-key-2"]
    ```
+
+1. `AWS_REGION`: The AWS region of your IAM user (i.e. `ca-central-1`)

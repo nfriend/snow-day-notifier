@@ -1,7 +1,6 @@
 import * as cheerio from 'cheerio';
 import * as rp from 'request-promise';
-
-let lastMatchedArticle: string;
+import { getLastMatchedTitle, setLastMatchedTitle } from './title-persistence';
 
 export interface SiteCheckResult {
   newDelayOrCancellationDetected: boolean;
@@ -51,14 +50,15 @@ const checkSiteForDelay = async (): Promise<SiteCheckResult> => {
 
   // make sure that if we *did* find a match, we haven't
   // already detected this match before.
-  if (foundMatch && lastMatchedArticle !== matchedArticle) {
-    lastMatchedArticle = matchedArticle;
+  const lastMatchedTitle = await getLastMatchedTitle();
+  if (foundMatch && lastMatchedTitle !== matchedArticle) {
+    await setLastMatchedTitle(matchedArticle);
 
     console.info('Match is new, and an IFTTT event will be triggered');
 
     return {
       newDelayOrCancellationDetected: foundMatch,
-      matchedArticleTitle: lastMatchedArticle,
+      matchedArticleTitle: lastMatchedTitle,
     };
   } else {
     if (foundMatch) {
