@@ -1,5 +1,3 @@
-import { checkSiteForDelay } from './check-site-for-delay';
-
 let mockArticleTitle;
 jest.mock('request-promise', () => {
   return () =>
@@ -21,6 +19,13 @@ jest.mock('request-promise', () => {
 });
 
 describe('check-site-for-delay', () => {
+  let checkSiteForDelay;
+
+  beforeEach(() => {
+    jest.resetModules();
+    ({ checkSiteForDelay } = require('./check-site-for-delay'));
+  });
+
   it('identifies a post about a delay', async () => {
     mockArticleTitle = 'All After-School Student Activities Cancelled';
     const actual = await checkSiteForDelay();
@@ -36,6 +41,21 @@ describe('check-site-for-delay', () => {
     const actual = await checkSiteForDelay();
 
     expect(actual).toEqual({
+      newDelayOrCancellationDetected: false,
+    });
+  });
+
+  it('does not return a match if a matching article title has already been reported', async () => {
+    mockArticleTitle = 'All After-School Student Activities Cancelled';
+    const firstRun = await checkSiteForDelay();
+    const secondRun = await checkSiteForDelay();
+
+    expect(firstRun).toEqual({
+      matchedArticleTitle: mockArticleTitle,
+      newDelayOrCancellationDetected: true,
+    });
+
+    expect(secondRun).toEqual({
       newDelayOrCancellationDetected: false,
     });
   });
