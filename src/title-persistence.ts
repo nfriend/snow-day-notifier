@@ -4,12 +4,15 @@ AWS.config.update({ region: process.env.AWS_DYNAMO_REGION });
 
 const ddb = new AWS.DynamoDB({ apiVersion: '2012-08-10' });
 
+const TABLE_NAME = 'snowDayNotifierTable';
+const KEY_NAME = 'lastMatchedTitle';
+
 export const getLastMatchedTitle = () => {
   return new Promise<string>((resolve, reject) => {
     const params = {
-      TableName: 'snowDayNotifierTable',
+      TableName: TABLE_NAME,
       Key: {
-        key: { S: 'lastMatchedTitle' },
+        key: { S: KEY_NAME },
       },
     };
 
@@ -33,7 +36,28 @@ export const getLastMatchedTitle = () => {
 
 export const setLastMatchedTitle = (articleTitle: string) => {
   return new Promise<void>((resolve, reject) => {
-    // TODO
-    resolve();
+    const params = {
+      TableName: TABLE_NAME,
+      Item: {
+        key: { S: KEY_NAME },
+        value: { S: articleTitle },
+      },
+    };
+
+    ddb.putItem(params, err => {
+      if (err) {
+        console.error(
+          'An error occurred while updating the last matched title from the database:',
+          err,
+        );
+        reject(err);
+      } else {
+        console.info(
+          'Successfully updated the last matched title in the database:',
+          articleTitle,
+        );
+        resolve();
+      }
+    });
   });
 };
