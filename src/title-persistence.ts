@@ -28,13 +28,15 @@ export const getLastMatchedTitle = () => {
         );
         reject(err);
       } else {
-        const arst = marshaller.unmarshallItem(data.Item);
+        const { CONFIG_VALUE: lastMatchedTitle } = marshaller.unmarshallItem(
+          data.Item,
+        );
 
         console.info(
           'Successfully fetched the last matched title from the database:',
-          JSON.stringify(arst, null, 2),
+          JSON.stringify(lastMatchedTitle, null, 2),
         );
-        resolve(JSON.stringify(arst, null, 2));
+        resolve(JSON.stringify(lastMatchedTitle, null, 2));
       }
     });
   });
