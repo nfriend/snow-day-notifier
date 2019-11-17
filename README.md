@@ -2,11 +2,20 @@
 
 <a href="https://gitlab.com/nfriend/snow-day-notifier/pipelines" target="_blank"><img src="https://gitlab.com/nfriend/snow-day-notifier/badges/master/pipeline.svg" alt="GitLab build status"></a>
 
-A small [Lambda](https://aws.amazon.com/lambda/) function that scrapes [PEI's public school board website](https://edu.princeedwardisland.ca/psb/) and sends alerts (through [IFTTT](https://ifttt.com/)) if school is delayed or closed.
+A small [Lambda](https://aws.amazon.com/lambda/) function that scrapes [PEI's public school board website](https://edu.princeedwardisland.ca/psb/)
+and sends alerts (through [IFTTT](https://ifttt.com/)) if school is delayed or closed.
 
-<img src="./snow.png" alt="A snowflake logo" width="250"/>
+<img src="img/snow.png" alt="A snowflake logo" width="250"/>
 
-Deployment of the Lambda function is managed by [GitLab CI/CD](https://docs.gitlab.com/ee/ci/) and the [Serverless framework](https://serverless.com/). This function is scheduled to run every 5 minutes.
+Deployment of the Lambda function is managed by [GitLab CI/CD](https://docs.gitlab.com/ee/ci/) and the [Serverless framework](https://serverless.com/).
+(See this project's [`.gitlab-ci.yml`](./.gitlab-ci.yml) and [`serverless.yml`](./serverless.yml).)
+This function is scheduled to run every 5 minutes.
+
+When the Lambda function identifies a potential closure, it sends a mobile notification that looks like this:
+
+![A notification from IFTTT](img/ifttt-notification-example.jpg)
+
+Clicking the notification redirects the user to the [PEI public school board website](https://edu.princeedwardisland.ca/psb/) to view the full post.
 
 ## Developing
 
@@ -42,4 +51,4 @@ When creating the IAM user for this project, grant the user the following permis
 - `AnazonAPIGatewayAdministrator`
 - `AWSCloudFormationFullAccess`
 
-![A screenshot of IAM's management console showing the necessary permissions](./iam-permissions.png)
+![A screenshot of IAM's management console showing the necessary permissions](img/iam-permissions.png)
