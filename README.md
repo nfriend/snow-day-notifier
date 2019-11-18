@@ -2,7 +2,7 @@
 
 <a href="https://gitlab.com/nfriend/snow-day-notifier/pipelines" target="_blank"><img src="https://gitlab.com/nfriend/snow-day-notifier/badges/master/pipeline.svg" alt="GitLab build status"></a>
 
-A small [Lambda](https://aws.amazon.com/lambda/) function that scrapes [PEI's public school board website](https://edu.princeedwardisland.ca/psb/)
+A small [Lambda](https://aws.amazon.com/lambda/) function that scrapes [PEI's public schools website](https://edu.princeedwardisland.ca/psb/)
 and sends alerts (through [IFTTT](https://ifttt.com/)) if school is delayed or closed.
 
 <img src="img/snow.png" alt="A snowflake logo" width="250"/>
@@ -15,7 +15,7 @@ When the Lambda function identifies a potential closure, it sends a mobile notif
 
 ![A notification from IFTTT](img/ifttt-notification-example.jpg)
 
-Clicking the notification redirects the user to the [PEI public school board website](https://edu.princeedwardisland.ca/psb/) to view the full post.
+Clicking the notification redirects the user to the [PEI public schools website](https://edu.princeedwardisland.ca/psb/) to view the full post.
 
 ## Developing
 
