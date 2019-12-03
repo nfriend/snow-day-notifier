@@ -35,7 +35,7 @@
     "@babel/core": "7.7.4",
     "@babel/preset-env": "7.7.4",
     "@babel/preset-typescript": "7.7.4",
-    "@types/cheerio": "0.22.14",
+    "@types/cheerio": "0.22.15",
     "@types/jest": "24.0.23",
     "@types/node": "12.12.14",
     "@types/request-promise": "4.1.45",
