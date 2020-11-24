@@ -32,7 +32,7 @@
   },
   "homepage": "https://gitlab.com/nfriend/snow-day-notifier#readme",
   "devDependencies": {
-    "@babel/core": "7.12.8",
+    "@babel/core": "7.12.9",
     "@babel/preset-env": "7.12.7",
     "@babel/preset-typescript": "7.12.7",
     "@types/cheerio": "0.22.22",
